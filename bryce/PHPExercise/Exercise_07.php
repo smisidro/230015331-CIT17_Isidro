@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
 </head>
 <body>
-    <?php
-    echo "<h1>BMI Calculator</h1>";
-    $weight = 80;
-    $height = 1.65 ;
 
-    $bmi = $weight /($height * $height);
+<h1>BMI Calculator</h1>
 
-    echo "Weight: $weight kg <br><br>";
-    echo "Height: $height m <br><br>";
-    echo "BMI: $bmi";
-    
+<form action="" method="POST">
+  Weight (kg): <input type="text" name="weight"><br><br>
+  Height (m): <input type="text" name="height"><br><br>
+  <input type="submit" value="Calculate BMI">
+</form>
 
-    ?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $weight = htmlspecialchars($_POST["weight"]);
+  $height = htmlspecialchars($_POST["height"]);
+
+  if (is_numeric($weight) && is_numeric($height) && $height > 0) {
+    $bmi = $weight / ($height * $height);
+    echo "<h3>Output:</h3>";
+    echo "Weight: $weight kg<br><br>";
+    echo "Height: $height m<br><br>";
+    echo "BMI: " . round($bmi, 2);
+  } else {
+    echo "<p>Please enter valid numeric values for weight and height.</p>";
+  }
+}
+?>
 
 </body>
 </html>

@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Swapping Variables</title>
 </head>
 <body>
-    <?php
-    echo "<h1> Swapping Variables</h1>";
-    $x = 5 ;
-    $y = 10;
 
-    echo "<h3>Before Swap<br></h3>";
-    echo "<p> x = $x </p>";
-    echo "<p> y = $y </p>";
+<h1>Swapping Variables</h1>
 
-    $temp = $x;
-    $x= $y;
-    $y = $temp;
+<form action="" method="POST">
+  Value of x: <input type="text" name="x"><br><br>
+  Value of y: <input type="text" name="y"><br><br>
+  <input type="submit" value="Swap">
+</form>
 
-    echo "<h3>After Swap<br></h3>";
-    echo "<p> x = $x </p>";
-    echo "<p> y = $y </p>";
-    ?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $x = htmlspecialchars($_POST["x"]);
+  $y = htmlspecialchars($_POST["y"]);
+
+  echo "<h3>Before Swap</h3>";
+  echo "<p>x = $x</p>";
+  echo "<p>y = $y</p>";
+
+  $temp = $x;
+  $x = $y;
+  $y = $temp;
+
+  echo "<h3>After Swap</h3>";
+  echo "<p>x = $x</p>";
+  echo "<p>y = $y</p>";
+}
+?>
+
 </body>
 </html>
